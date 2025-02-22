@@ -1,3 +1,4 @@
+BUILD_FILE_PATH :: "/build.jai";
 EXE_NAME_STUB :: "<EXE_NAME>";
 
 BUILD_FILE :: #string DONE
@@ -53,7 +54,7 @@ message_loop :: () {
             case .ERROR;
             case .PERFORMANCE_REPORT;
             case .COMPLETE;
-            print("Compilation done.");
+            print("Compilation done.\n");
             return;
         }
     }
