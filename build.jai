@@ -50,7 +50,7 @@ message_loop :: () {
             case .ERROR;
             case .PERFORMANCE_REPORT;
             case .COMPLETE;
-            print("Compilation done.");
+            print("Compilation done.\n");
             return;
         }
     }
