@@ -1,4 +1,4 @@
-#import "Basic";
+#import "Basic"()(MEMORY_DEBUGGER = true);
 #import "File";
 #import "File_Utilities";
 #import "String";
@@ -7,14 +7,13 @@
 #load "jails_file.jai";
 #load "build_file.jai";
 
-MAIN_FILE_PATH :: "/src/main.jai";
-BUILD_FILE_PATH :: "/build.jai";
-JAILS_FILE_PATH :: "/jails.json";
-
 main :: () {
+
+    defer report_memory_leaks();
 
     string_builder: String_Builder;
     init_string_builder(*string_builder, 4096);
+    defer reset(*string_builder);
 
     cwd := get_working_directory();
 
@@ -33,8 +32,10 @@ main :: () {
         exe_name := cwd_path.words[cwd_path.words.count - 1];
 
         build_file_contents := replace(BUILD_FILE, EXE_NAME_STUB, exe_name);
+        defer free(build_file_contents);
 
         file_path := builder_to_string(*string_builder);
+        defer free(file_path);
         if !write_entire_file(file_path, build_file_contents) {
             write_string("Failed to create the 'build.jai' file.", to_standard_error = true); 
             return;
@@ -47,6 +48,7 @@ main :: () {
         append(*string_builder, JAILS_FILE_PATH);
 
         file_path := builder_to_string(*string_builder);
+        defer free(file_path);
         if !write_entire_file(file_path, JAILS_FILE) {
             write_string("Failed to create the 'jails.json' file.", to_standard_error = true); 
             return;
@@ -61,6 +63,7 @@ main :: () {
         make_directory_if_it_does_not_exist("src");
 
         file_path := builder_to_string(*string_builder);
+        defer free(file_path);
         if !write_entire_file(file_path, MAIN_FILE) {
             write_string("Failed to create the 'main.jai' file.", to_standard_error = true); 
             return;

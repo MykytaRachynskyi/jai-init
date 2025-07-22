@@ -1,3 +1,5 @@
+JAILS_FILE_PATH :: "/jails.json";
+
 JAILS_FILE :: #string DONE
 {
     "local_modules": [
