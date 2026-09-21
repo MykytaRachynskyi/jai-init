@@ -1,4 +1,4 @@
-BUILD_FILE_PATH :: "/build.jai";
+BUILD_FILE_PATH :: "build.jai";
 EXE_NAME_STUB :: "<EXE_NAME>";
 
 BUILD_FILE :: #string DONE

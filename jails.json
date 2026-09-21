@@ -5,7 +5,7 @@
         "vendor"
     ],
     "roots": [
-        "server/main.jai",
+        "src/main.jai",
         "build.jai"
     ],
     "build_root": "build.jai"

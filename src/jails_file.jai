@@ -1,4 +1,4 @@
-JAILS_FILE_PATH :: "/jails.json";
+JAILS_FILE_PATH :: "jails.json";
 
 JAILS_FILE :: #string DONE
 {
@@ -8,7 +8,7 @@ JAILS_FILE :: #string DONE
         "vendor"
     ],
     "roots": [
-        "server/main.jai",
+        "src/main.jai",
         "build.jai"
     ],
     "build_root": "build.jai"
