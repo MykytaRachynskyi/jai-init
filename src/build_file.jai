@@ -16,18 +16,15 @@ build :: () {
     }
 
     options := get_build_options(w);
-    options.output_executable_name = get_basename_and_path(#file);
 
     new_path: [..] string;
     array_add(*new_path, ..options.import_path);
     array_add(*new_path, "src/modules");
     array_add(*new_path, "vendor");
     options.import_path = new_path;
-    // output
-    {
-        options.output_executable_name = "<EXE_NAME>";
-        options.output_path = "out";
-    }
+
+    options.output_executable_name = "<EXE_NAME>";
+    options.output_path = "out";
     set_build_options(options, w);
 
     compiler_begin_intercept(w);
